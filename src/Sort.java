@@ -4,7 +4,8 @@ public class Sort {
 //        mergesort(array);
 //        quicksort(array);
         int[] sortedArray = {2, 8, 10, 16, 22, 30, 31, 69};
-        System.out.println(binarysearch(sortedArray, 30));
+//        System.out.println(binarysearch(sortedArray, 30));
+        System.out.println(binaryRecursive(sortedArray, 30, 0, sortedArray.length - 1));
 
     }
 
@@ -109,10 +110,9 @@ public class Sort {
     public static int binarysearch(int[] arr, int x) {
         int low = 0;
         int high = arr.length - 1;
-        int mid;
 
         while (low <= high) {
-            mid = (low + high) / 2;
+            int mid = (low + high) / 2;
             if (arr[mid] < x) {
                 low = mid + 1;
             } else if (arr[mid] > x) {
@@ -122,5 +122,16 @@ public class Sort {
             }
         }
         return -1;
+    }
+
+    public static int binaryRecursive(int[] arr, int x, int low, int high) {
+        if (low > high) return -1;
+        int mid = (low + high) / 2;
+        if (arr[mid] > x) {
+            return binaryRecursive(arr, x, low, mid - 1);
+        } else if (arr[mid] < x) {
+            return binaryRecursive(arr, x, mid + 1, high);
+        }
+        return mid;
     }
 }
