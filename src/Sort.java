@@ -41,6 +41,26 @@ public class Sort {
             current++;
         }
 
+
+        //With out in-place algorithm, i= low, j = high, k= current
+        //store elements into temp helper array and copy it back in the end.
+
+//        while(i<=middle && j<=high) {
+//            if(helperLeft[i] < helperRight[j]) {
+//                helper[k++] = array[i++];
+//            }else {
+//                helper[k++] = array[j++];
+//            }
+//        }
+//        while(i<=middle)
+//            helper[k++] = array[i++];
+//        while(j<=r)
+//            helper[k++] = array[j++];
+//        for(int index=low; index<k; index++)
+//            array[index] = temp[index];
+
+
+
         int remaining = middle - helperLeft;
         for (int i = 0; i <= remaining; i++) {
             array[current + i] = helper[helperLeft + i];
