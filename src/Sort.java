@@ -2,7 +2,9 @@ public class Sort {
     public static void main(String[] args) {
         int[] array = {69, 10, 30, 2, 16, 8, 31, 22};
 //        mergesort(array);
-        quicksort(array);
+//        quicksort(array);
+        int[] sortedArray = {2, 8, 10, 16, 22, 30, 31, 69};
+        System.out.println(binarysearch(sortedArray, 30));
 
     }
 
@@ -69,15 +71,15 @@ public class Sort {
     }
 
     public static void quicksort(int[] arr) {
-        quicksort(arr, 0, arr.length -1);
-        for (int i=0; i<arr.length; i++) {
+        quicksort(arr, 0, arr.length - 1);
+        for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
     }
 
     public static void quicksort(int[] arr, int left, int right) {
         int index = partition(arr, left, right);
-        if (left<index-1) quicksort(arr,left, index-1);
+        if (left < index - 1) quicksort(arr, left, index - 1);
         if (index < right) quicksort(arr, index, right);
 
     }
@@ -95,12 +97,30 @@ public class Sort {
             if (left <= right) {
                 //swap
                 int temp = arr[left];
-                arr[left]= arr[right];
+                arr[left] = arr[right];
                 arr[right] = temp;
                 left++;
                 right--;
             }
         }
         return left;
+    }
+
+    public static int binarysearch(int[] arr, int x) {
+        int low = 0;
+        int high = arr.length - 1;
+        int mid;
+
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (arr[mid] < x) {
+                low = mid + 1;
+            } else if (arr[mid] > x) {
+                high = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
     }
 }
